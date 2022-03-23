@@ -14,7 +14,7 @@ class User extends Model{
             }else{
                 const id = await util.createId("idUser "+ email);
                 const password = await util.encriptPassword(data.password);
-                const user = await knex('users').insert({...data, id, email, password, "role":"user"}).then(() => {return knex ('users').where('email', email).select('id', 'email', 'role')});
+                const user = await knex('users').insert({...data, id, email, password, "role":"user"}).then(() => {return knex ('users').where('email', email).select('id', 'email', 'fullname', 'type', 'role')});
                 if(user.length > 0){
                     const code = uuidv4();
                     const userId = {id: user[0].id, code: code, role: user[0].role};
@@ -24,7 +24,7 @@ class User extends Model{
                     //const mail = new Mail("Veloz <transational@veloz.io>", "Welcome to Veloz API", `Olá ${this.fullname}, Seja Bem Vindo ao <b>Veloz API</b> !`);
                     //await mail.send()
                    
-                    return {status: true, user: user[0].email, acessToken, refreshToken};
+                    return {status: true, name: user[0].fullname, email:user[0].email, type: user[0].type, acessToken, refreshToken};
                 }else{
                     return {status: false, message: 'Usuário não foi cadastrado'};
                 }
