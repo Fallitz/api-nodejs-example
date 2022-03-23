@@ -13,7 +13,7 @@ module.exports = {
                     const authModel = await model.Auth;
                     const user = await authModel.authenticate(data);
                     if(user.status){
-                        res.json({status: true, message: 'Bem-vindo de volta!', data:{ accessToken: user.message.accessToken, refreshToken: user.message.refreshToken}});
+                        res.json({status: true, message: 'Bem-vindo de volta!', data:{ nome:user.message.name, type:user.message.type, accessToken: user.message.accessToken, refreshToken: user.message.refreshToken}});
                     }else{
                         res.status(403).json({status: false, message: 'E-mail e/ou senha estão incorretos.'}) ;
                     }
