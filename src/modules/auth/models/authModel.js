@@ -42,12 +42,13 @@ class Auth extends Model{
         }
     }
 
-    async refreshToken(id, token){
+    async refreshToken(id, token, type){
         try{
             const tokenInsert = await knex('tokens').insert({token, created_at: knex.fn.now()});  
             if(tokenInsert.length > 0 || tokenInsert > 0){
                 const idToken = uuidv4();
-                const userId = {id:id, code:idToken, role: token.role}
+
+                const userId = {id:id, code:idToken, role: type}
                 const accessToken = await util.generateToken(userId, process.env.ACCESS_TOKEN_SECRET, process.env.ACCESS_TOKEN_EXPIRES_IN ?? '15m');
                 const refreshToken = await util.generateToken(userId, process.env.REFRESH_TOKEN_SECRET, process.env.REFRESH_TOKEN_EXPIRES_IN ?? '7d');      
                 return {status: true, data: {accessToken: accessToken, refreshToken: refreshToken}};

@@ -49,7 +49,7 @@ module.exports = {
                 if (tokenRefreshVerified.code == req.tokenData.code){
                     const authModel = await model.Auth;
                     const tokenForLogout = req.headers['access-token'];
-                    const result = await authModel.refreshToken(req.tokenData.id, tokenForLogout);
+                    const result = await authModel.refreshToken(req.tokenData.id, tokenForLogout, req.tokenData.role);
                     if (result.status){
                         res.status(200).json({ accessToken: result.data.accessToken, refreshToken: result.data.refreshToken });
                     }
