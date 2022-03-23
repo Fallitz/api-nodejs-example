@@ -51,7 +51,7 @@ async function start() {
 
 
     //SERVER LISTEN
-    const PORT = process.env.APP_PORT;
+    const PORT = process.env.PORT || 3333;
     app.listen(PORT, () => {
         signale.success(`Server Running on Port ${PORT}`);
     });
