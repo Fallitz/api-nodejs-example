@@ -1,4 +1,4 @@
-const Validator = require('./../../../../repositories/http/Validator')
+const Validator = require('./../../../../repositories/http/validator')
 
 const schema = {
     auth:
