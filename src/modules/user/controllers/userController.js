@@ -12,7 +12,7 @@ module.exports = {
                 const userModel = await model.User;
                 const userRegistered = await userModel.create(data);
                 if(userRegistered.status){
-                    return res.status(201).json({status: true, message: 'Usuário criado com sucesso', data: {user: userRegistered.user, acessToken: userRegistered.acessToken, refreshToken: userRegistered.refreshToken}});
+                    return res.status(201).json({status: true, message: 'Usuário criado com sucesso', data: {email: userRegistered.email, name: userRegistered.name, type: userRegistered.type, acessToken: userRegistered.acessToken, refreshToken: userRegistered.refreshToken}});
                 }else{
                     return res.status(403).json({status: false, message: userRegistered.message, field: userRegistered.field});
                 }

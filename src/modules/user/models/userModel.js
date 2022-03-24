@@ -24,7 +24,7 @@ class User extends Model{
                     //const mail = new Mail("Veloz <transational@veloz.io>", "Welcome to Veloz API", `Olá ${this.fullname}, Seja Bem Vindo ao <b>Veloz API</b> !`);
                     //await mail.send()
                    
-                    return {status: true, name: user[0].fullname, email:user[0].email, type: user[0].type, acessToken, refreshToken};
+                    return {status: true, email: user[0].email, name: user[0].fullname, type: user[0].type, acessToken, refreshToken};
                 }else{
                     return {status: false, message: 'Usuário não foi cadastrado'};
                 }
