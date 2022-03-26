@@ -2,6 +2,7 @@ const knex = require('../../../config/database');
 const Model = require('../../../repositories/models/model');
 const util = require('../../../repositories/util/util');
 const { v4: uuidv4 } = require('uuid');
+const Mail = require('../../../repositories/services/mail');
 
 class User extends Model{
     
@@ -16,14 +17,15 @@ class User extends Model{
                 const password = await util.encriptPassword(data.password);
                 const user = await knex('users').insert({...data, id, email, password, "role":"user"}).then(() => {return knex ('users').where('email', email).select('id', 'email', 'fullname', 'type', 'role')});
                 if(user.length > 0){
+
+                    /*const mail = new Mail("fallitzdev@gmail.com", user[0].email,  "Welcome to Veloz API", `Olá ${user[0].fullname}, Seja Bem Vindo ao <b>Veloz API</b>!`);
+                    await mail.send();*/
+                    
                     const code = uuidv4();
                     const userId = {id: user[0].id, code: code, role: user[0].role};
                     const acessToken = await util.generateToken(userId, process.env.ACCESS_TOKEN_SECRET, process.env.ACCESS_TOKEN_EXPIRES_IN ?? '15m');
                     const refreshToken = await util.generateToken(userId, process.env.REFRESH_TOKEN_SECRET, process.env.REFRESH_TOKEN_EXPIRES_IN ?? '7d');
                     
-                    //const mail = new Mail("Veloz <transational@veloz.io>", "Welcome to Veloz API", `Olá ${this.fullname}, Seja Bem Vindo ao <b>Veloz API</b> !`);
-                    //await mail.send()
-                   
                     return {status: true, email: user[0].email, name: user[0].fullname, type: user[0].type, acessToken, refreshToken};
                 }else{
                     return {status: false, message: 'Usuário não foi cadastrado'};

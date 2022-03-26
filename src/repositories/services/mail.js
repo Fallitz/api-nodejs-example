@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
 
 class Mail{
     constructor(from, to, subject, html){
@@ -9,7 +9,7 @@ class Mail{
     }
 
     async send(){
-        const transporter = this.conf()
+        const transporter = this.conf();
         const info = await transporter.sendMail({
             from: this.from, // sender address
             to: this.to, // list of receivers
