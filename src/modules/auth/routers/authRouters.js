@@ -11,8 +11,6 @@ class authRouter {
         Router.post('/login', AuthController.auth);                                                                 //AUTHENTICATE USER
         Router.post('/logout', AuthenticateToken, AuthController.logout);                                           //LOGOUT USER
         Router.post('/refreshToken', AuthenticateToken, AuthController.refreshToken);                               //REFRESH TOKEN
-        //Router.post('/auth/forgot' , AuthController.forgot);                                                      //FORGOT PASSWORD
-        //Router.get('/auth/forgot' , AuthController.alterPassword);  
     
         return Router;
     }

@@ -1,6 +1,6 @@
 const signale = require('signale');
-const auth = require('../modules/auth/module/authModule')
-const user = require('../modules/user/module/userModule');
+const auth = require('./modules/auth/module/authModule')
+const user = require('./modules/user/module/userModule');
 
 class Modules {
 

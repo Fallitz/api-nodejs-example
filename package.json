@@ -1,10 +1,8 @@
 {
-  "name": "backend-api-nodejs",
+  "name": "api_zero",
   "version": "1.0.0",
+  "description": "Api de cadastro, autenticação e envio de email.",
   "main": "./src/index.js",
-  "repository": "",
-  "author": "Fallitz <fallitzdev@gmail.com>",
-  "license": "MIT",
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js",
@@ -14,6 +12,16 @@
     "unmigrate": "npx knex migrate:rollback",
     "seed": "npx knex seed:run "
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VELOZBACKEND/api_zero.git"
+  },
+  "author": "VELOZBACKEND",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VELOZBACKEND/api_zero/issues"
+  },
+  "homepage": "https://github.com/VELOZBACKEND/api_zero#readme",
   "dependencies": {
     "async": "^3.2.2",
     "bcrypt": "^5.0.1",
@@ -30,9 +38,7 @@
     "mysql": "^2.18.1",
     "nodemailer": "^6.7.2",
     "pluralize": "^8.0.0",
-    "rotating-file-stream": "^3.0.2",
     "signale": "^1.4.0",
-    "timexe": "^1.0.5",
     "uuid": "^8.3.2",
     "yup": "^0.32.11"
   },

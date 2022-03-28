@@ -49,23 +49,6 @@ class User extends Model{
             return {status: false, message: error.sqlMessage ?? error.message};
         }
     }
-
-    /*
-    async find(email, password){
-        try {
-            const user = knex('users').where({email});
-            if(!user){
-                throw new Error('E-Mail Not Found !');
-            }
-            const comparePassword = this.comparePassword(password, user.password);
-            if(!comparePassword){
-                throw new Error('Incorrect Password !');
-            }
-            return true;
-        } catch (error) {
-            throw new Error('Erro ao procurar e-mail');
-        }
-    }*/
     
 }
 

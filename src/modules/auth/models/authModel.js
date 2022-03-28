@@ -35,7 +35,7 @@ class Auth extends Model{
             if(tokenInsert.length > 0 || tokenInsert > 0){         
                 return {status: true};
             }else{
-                return {status: false, message: 'Erro ao deslogar'};
+                return {status: false, message: 'Não permitido.'};
             }
         }catch(error){
             return {status: false, message: error.sqlMessage ?? error.message};

@@ -10,12 +10,10 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const knex = require('./config/database');
-const modules = require('./config/modules');
+const modules = require('./modules');
 
 const path = require('path');
-const rfs = require('rotating-file-stream');
 const signale = require('signale');
-const timexe = require( 'timexe' );
 
 
 async function start() {
@@ -25,13 +23,6 @@ async function start() {
     app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
     app.use(helmet());
     app.use(express.json());
-
-
-    //LOGGING
-    var accessLogStream = rfs.createStream("access.log", {size: "10M", interval: "1d", compress: "gzip", path: path.join(__dirname, '../log')});
-    morgan.token('token', function getId (req) {return req.headers['access-token'];});
-    app.use(morgan(':remote-addr - - [:date[clf]] ":method :url HTTP/:http-version" Status=:status Size=:res[content-length] Referrer=":referrer" User-Agent":user-agent" Response-Time=:response-time Token=":token"', {skip: function(req, res){return res.statusCode < 400 }}));
-    app.use(morgan(':remote-addr - - [:date[clf]] ":method :url HTTP/:http-version" Status=:status Size=:res[content-length] Referrer=":referrer" User-Agent":user-agent" Response-Time=:response-time Token=":token"', {stream: accessLogStream}));
 
 
     //MODULES INIT
@@ -54,15 +45,6 @@ async function start() {
     const PORT = process.env.PORT || 3333;
     app.listen(PORT, () => {
         signale.success(`Server Running on Port ${PORT}`);
-    });
-
-
-    //REMOVE INVALID TOKENS
-    timexe ("* * * 0-23 / 1" ,  function ( ) {  
-        const validade = new Date(Date.now() - (1000* 60 * 20)); // 20 minutos
-        knex('tokens').where('created_at', '<', validade).del();
-        // * * * 0-23 / 1                   //A CADA 1 minuto
-        //* * w1-7 / 3                      //A CADA 3 horas
     });
 
 }

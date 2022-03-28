@@ -1,7 +1,7 @@
-const UserValidator = require('./validators/userValidator');
-var model = require('../../../config/modules');
-const { validate: uuidValidate } = require('uuid');
 const authenticateRoles = require('../../../middleware/authenticateRoles');
+const UserValidator = require('./validators/userValidator');
+var model = require('../../../modules');
+const { validate: uuidValidate } = require('uuid');
 
 module.exports = {
 
@@ -25,7 +25,7 @@ module.exports = {
     },
 
     async getUser(req, res){
-        const roles = await authenticateRoles( req.tokenData.role, ['user', 'admin']);
+        const roles = await authenticateRoles( req.tokenData.role, ['user']);
         if(roles){
             const id = req.tokenData.id;
             if (!uuidValidate(id)){
@@ -50,68 +50,5 @@ module.exports = {
             return res.status(403).json({status: false, message: 'Acesso negado'});
         }
     },
-    
-    /*
-    async update(req, res){
-        try {
-             const userModel = await model.User;
-            const user_id = req.params.id;
-            const {email, fullname, birth, nickname} = req.body;
-
-            if(email) {
-                updateUserEmail(user_id, email, res);
-            }
-
-            if(nickname) {
-                updateUserNickname(user_id, nickname, res);
-            }
-
-            // Get user logged id e select your type (user, admin ...)
-            const userAuthenticated = req.tokenData.id;
-            const getType = await userModel.where({id: userAuthenticated}, ['type']);
-            if(getType == 'admin' || userAuthenticated == user_id){
-                try {
-                    const userModel =  mongodb.User;
-                    await userModel.update({id: user_id}, {fullname, birth});
-                    return res.status(200).json({message: "User Updated", data: {user: user_id}});
-                } catch (error) {
-                    return res.status(404).json({message: error.message});
-                }
-            }else{
-                return res.status(500).json({message: 'Permission denied'});
-            }  
-
-        } catch (error) {
-            return res.status(500).json({message: error.message});
-        } 
-    },
-
-  
-    async delete(req, res){
-        try {
-            const userModel = await model.User;
-            const {user_id} = req.body;
-
-            //Get user logged id e select your type (user, admin ...)
-            const userAuthenticated = req.tokenData.id;
-            const getType = await userModel.where({id: userAuthenticated}, ['type']);
-
-            // Cheks if the user logged is admin or if the user id that will be deleted is equal to logged
-            if(getType == 'admin' || userAuthenticated == user_id){
-                try {
-                    const userModel =  mongodb.User;
-                    await userModel.delete(user_id);
-                    return res.status(200).json({message: "User deleted", data: {user_id}});
-                } catch (error) {
-                    return res.status(404).json({message: error.message});
-                }
-            }else{
-                return res.status(500).json({message: 'Permission denied'});
-            }  
-
-        } catch (error) {
-            return res.status(500).json({message: error.message});
-        } 
-    },*/
 
 }
