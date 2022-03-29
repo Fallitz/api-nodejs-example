@@ -13,12 +13,18 @@ Good job :)
 
 ### Auth
 > Login [POST]: /api/v1/auth/login/
+
 > Logout [POST]: /api/v1/auth/logout/
+
 > Refresh Token [POST]: /api/v1/auth/refreshToken/
 
 ### User
 > Create User [POST]: /api/v1/users/register/
+
 > Get User [GET]: /api/v1/users/getUser/
+
 > Update User [POST]: /api/v1/users/updateUser/
+
 > Delete User [POST]: /api/v1/users/deleteUser/
+
 
