@@ -1,5 +1,5 @@
 {
-  "name": "api_zero",
+  "name": "api_nodejs_example",
   "version": "1.0.0",
   "description": "Api de cadastro, autenticação e envio de email.",
   "main": "./src/index.js",
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VELOZBACKEND/api_zero.git"
+    "url": "git+https://github.com/Fallitz/api-nodejs-example.git"
   },
-  "author": "VELOZBACKEND",
+  "author": "Fallitz",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/VELOZBACKEND/api_zero/issues"
+    "url": "https://github.com/Fallitz/api-nodejs-example/issues"
   },
-  "homepage": "https://github.com/VELOZBACKEND/api_zero#readme",
+  "homepage": ".",
   "dependencies": {
     "async": "^3.2.2",
     "bcrypt": "^5.0.1",
