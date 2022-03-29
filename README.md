@@ -1,14 +1,24 @@
-# api_nodejs_example
-Api de cadastro, autenticação e envio de email.
+# Welcome to API_NODEJS_EXAMPLE !
 
-ENDPOINTS:
+## Install
 
-Login [POST]: /api/v1/auth/login
+Download the code. Very good :)
+Run "npm run migrate" in the terminal to auto configure the database (manually create the database), after that, run "npm run dev" for development mode or "npm run start" for production mode.
 
-Logout [POST]: /api/v1/auth/logout
+Reminder: Create ".env" file with settings use ".env.example" as base.
 
-Refresh Token [POST]: /api/v1/auth/refreshToken
-         
-Create User [POST]: /api/v1/users/register
+Good job :)
 
-Get User Logged [GET]: /api/v1/users/getUser/
+## End Points
+
+### Auth
+> Login [POST]: /api/v1/auth/login/
+> Logout [POST]: /api/v1/auth/logout/
+> Refresh Token [POST]: /api/v1/auth/refreshToken/
+
+### User
+> Create User [POST]: /api/v1/users/register/
+> Get User [GET]: /api/v1/users/getUser/
+> Update User [POST]: /api/v1/users/updateUser/
+> Delete User [POST]: /api/v1/users/deleteUser/
+
