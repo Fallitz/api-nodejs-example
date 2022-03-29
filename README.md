@@ -3,6 +3,7 @@
 ## Install
 
 Download the code. Very good :)
+
 Run "npm run migrate" in the terminal to auto configure the database (manually create the database), after that, run "npm run dev" for development mode or "npm run start" for production mode.
 
 Reminder: Create ".env" file with settings use ".env.example" as base.
