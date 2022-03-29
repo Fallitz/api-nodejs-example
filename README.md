@@ -1,4 +1,4 @@
-# api_zero
+# api_nodejs_example
 Api de cadastro, autenticação e envio de email.
 
 ENDPOINTS:
