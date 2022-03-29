@@ -50,6 +50,31 @@ class User extends Model{
         }
     }
     
+    async updateUser(id, data){
+        try {
+            const user = await knex('users').where('active', 1).where('id', id).update(data);
+            if(user){
+                return {status: true, message: 'Usuário atualizado com sucesso'};
+            }else{
+                return {status: false, message: 'Usuário não encontrado'};
+            }
+        } catch (error) {
+            return {status: false, message: error.sqlMessage ?? error.message};
+        }
+    }
+
+    async deleteUser(id){
+        try {
+            const user = await knex('users').where('active', 1).where('id', id).update({active: 0});
+            if(user){
+                return {status: true, message: 'Usuário deletado com sucesso'};
+            }else{
+                return {status: false, message: 'Usuário não encontrado'};
+            }
+        } catch (error) {
+            return {status: false, message: error.sqlMessage ?? error.message};
+        }
+    }
 }
 
 module.exports = User
